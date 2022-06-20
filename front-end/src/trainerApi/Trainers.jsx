@@ -6,6 +6,10 @@ import AddNewTrainer from "./AddNewTrainer";
 const Trainers= () => {
 
     const [trainers, setTrainers] = useState([]);
+    // this constant is trainers and setTrainers. which is equal to the 
+    // pre set function of useState - an array response.
+    // the array response to define setTrainers is defined on line 18
+    // whichis the response data found when we go to that URL.
     const [fetchData, setFetchData] = useState(false);
 
 
@@ -14,7 +18,8 @@ const Trainers= () => {
             .then(res => setTrainers(res.data))
             .catch(err => console.error(err));
     }, [fetchData]);
-
+// fetch data in [] is a condition to tell the programme when to render the page
+// in this case when fetchData is updated/changes.
     return ( 
         <>
         <h2>List of trainers: </h2>

@@ -23,6 +23,7 @@ const AddNewTrainer =({getData, fetchData})=>{
                 "age": age,
                 "specialism": special
             })
+
             .then((res)=>{
                 console.log(res);
 
@@ -33,12 +34,33 @@ const AddNewTrainer =({getData, fetchData})=>{
                 }, 500)
                 console.log("done")
             })
-            .catch((error)=>alert(error))
+            .catch((error)=>alert(error));
         }
 
-        console.log(fetchData)
+        // UPDATE 
 
+    const handleUpdate= (e)=>{
+        e.preventDefault()
         
+        axios.put("http://localhost:4494/trainers/update/" +id ,{
+            "_id": id,
+            "name": name,
+            "age": age,
+            "specialism": special
+        })
+        .then((res)=>{
+            console.log(res);
+
+            setTimeout(()=>{
+
+                getData(!fetchData)
+                console.log("loading")
+            }, 500)
+            console.log("done")
+        })
+        .catch((error)=>alert(error));
+    }
+
         return (
           <form >
             <h4>Insert values into the following boxes: </h4>
@@ -52,9 +74,11 @@ const AddNewTrainer =({getData, fetchData})=>{
             <br/>
             <h4>Select POST (to add a new trainer)</h4>
             <button className="button button1" onClick={handleSubmit} >POST</button>
+            <br/>
+            <h4>Select UPDATE (to update an existing trainer)</h4>
+            <button className="button button2" onClick={handleUpdate} >UPDATE</button>
           </form>
         );
             
-}
-
+        }
 export default AddNewTrainer;
